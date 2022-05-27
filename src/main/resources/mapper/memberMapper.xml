@@ -5,13 +5,24 @@
 
 <mapper namespace="Member">
     <insert id="save" parameterType="member">
-        insert into m_table (id, mId, mPass, mName, mEmail, mPhone, mPro) values (#{id}, #{mId}, #{mPass}, #{mName}, #{mEmail}, #{mPhone}, #{mPro})
+        insert into m_table (mId, mPass, mName, mEmail, mPhone, mPro, mPass2) values (#{mId}, #{mPass}, #{mName}, #{mEmail}, #{mPhone}, #{mPro}, #{mPass2})
     </insert>
     <select id="login" parameterType="member" resultType="member">
         select * from m_table where mId=#{mId} and mPass=#{mPass}
     </select>
     <select id="findById" resultType="member" parameterType="Long">
         select * from m_table where id=#{id}
+    </select>
+    <select id="check" parameterType="String" resultType="String">
+        select mId from m_table where mId=#{mId}
+    </select>
+    <select id="pagingList" parameterType="java.util.HashMap" resultType="member">
+        select * from m_table order by id desc limit #{start}, #{limit}
+        -- HashMap = 여기서 parameterType을 java.util.HashMap으로 준다
+    </select>
+
+    <select id="count" resultType="int">
+        select count(id) from m_table
     </select>
 </mapper>
 

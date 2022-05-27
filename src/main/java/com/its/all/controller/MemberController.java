@@ -1,6 +1,7 @@
 package com.its.all.controller;
 
 import com.its.all.dto.MemberDTO;
+import com.its.all.dto.PageDTO;
 import com.its.all.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
 
 @RequestMapping("/member")
 @Controller
@@ -19,15 +22,19 @@ public class MemberController {
         return "member/save";
     }
     @PostMapping("/save")
-    public String save(@ModelAttribute MemberDTO memberDTO) {
-        boolean result = memberService.save(memberDTO);
-        if(result) {
-            return "member/login";
-        }else {
-            return "member/save";
-
-        }
+    public String save(@ModelAttribute MemberDTO memberDTO) throws IOException {
+        memberService.save(memberDTO);
+        return "member/login";
     }
+    @PostMapping("/check")
+    public @ResponseBody String check(@RequestParam("mId") String mId) {
+        System.out.println("mId = " + mId);
+        String check = memberService.check(mId);
+        return check;
+    }
+
+
+
     @GetMapping("/detail")
     public String findById(@RequestParam("id") Long id, Model model){
         MemberDTO memberDTO = memberService.findById(id);
@@ -49,11 +56,7 @@ public class MemberController {
             session.setAttribute("memberId",result.getId());
             session.setAttribute("memberMId",result.getMId());
             model.addAttribute("member", result);
-            return "index";
+            return "redirect:/board/paging";
         }
-    }
-    @PostMapping("/loginCheck")
-    public String idCheck() {
-        return null;
     }
 }

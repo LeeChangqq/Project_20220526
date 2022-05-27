@@ -1,9 +1,13 @@
 package com.its.all.repository;
 
+import com.its.all.dto.BoardDTO;
 import com.its.all.dto.MemberDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class MemberRepository {
@@ -20,5 +24,9 @@ public class MemberRepository {
 
     public MemberDTO login(MemberDTO memberDTO) {
         return sql.selectOne("Member.login", memberDTO);
+    }
+
+    public String check(String mId) {
+        return sql.selectOne("Member.check", mId);
     }
 }
