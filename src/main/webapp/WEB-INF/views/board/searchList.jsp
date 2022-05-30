@@ -16,16 +16,16 @@
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<%--<div class="container mt-3">--%>
-<%--    <form action="/member/search" method="get">--%>
-<%--        <select name="searchType">--%>
-<%--            <option value="boardTitle">제목</option>--%>
-<%--            <option value="boardWriter">작성자</option>--%>
-<%--        </select>--%>
-<%--        <input type="text" name="q" placeholder="검색어 입력">--%>
-<%--        <input type="submit" value="검색">--%>
-<%--    </form>--%>
-<%--</div>--%>
+<div class="container mt-3">
+    <form action="/board/search" method="get">
+        <select name="searchType">
+            <option value="bTitle">제목</option>
+            <option value="bWriter">작성자</option>
+        </select>
+        <input type="text" name="q" placeholder="검색어 입력">
+        <input type="submit" value="검색">
+    </form>
+</div>
 
 <div class="container">
     <table class="table">
@@ -36,14 +36,14 @@
             <th>작성시간</th>
             <th>조회수</th>
         </tr>
-        <c:forEach items="${sessionScope}" var="member">
+        <c:forEach items="${boardList}" var="board">
             <tr>
                 <td>${board.id}</td>
-                <td>${board.boardWriter}</td>
-                <td><a href="/board/detail?page=${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
+                <td>${board.bWriter}</td>
+                <td><a href="/board/detail?page=${paging.page}&id=${board.id}">${board.bTitle}</a></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
-                                    value="${board.boardCreatedDate}"></fmt:formatDate></td>
-                <td>${board.boardHits}</td>
+                                    value="${board.bDate}"></fmt:formatDate></td>
+                <td>${board.bHits}</td>
             </tr>
         </c:forEach>
     </table>

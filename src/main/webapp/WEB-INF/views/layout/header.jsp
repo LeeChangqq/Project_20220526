@@ -12,9 +12,11 @@
 </head>
 <body>
     <header>
-        <a href="/">Home</a> &nbsp;
-        <a href="/board/save">글쓰기</a> &nbsp;
-        <a href="/board/findAll">글목록</a> &nbsp;
+<%--        <img src="${pageContext.request.contextPath}/upload/${boardDTO.bFile}" alt="" height="100" width="100">--%>
+        <a href="/member/logout">로그아웃</a> &nbsp;
+        <a href="/board/save-form">글쓰기</a> &nbsp;
+        <a href="/board/paging">글목록</a> &nbsp;
+        <a href="/member/update-form">마이페이지</a>
     </header>
 </body>
 </html>

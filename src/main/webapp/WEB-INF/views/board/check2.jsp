@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: user
-  Date: 2022-05-26
-  Time: 오후 2:14
+  Date: 2022-05-30
+  Time: 오전 9:58
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,11 +14,21 @@
 <body>
 <div class="container">
     <div class="display-4 fw-normal">
-        <a href="/member/save-form" class="form-control">회원가입</a>
-        <a href="/member/login-form" class="form-control">로그인</a>
+        <input type="text" name="mPass" placeholder="비밀번호" id="mPass" class="form-control">
+        <input type="button" onclick="aa1()" value="입력" class="form-control">
     </div>
 </div>
-<%--    세션에 담은 memberId : ${sessionScope.memberId}    <br>--%>
-<%--    세션에 담은 id : ${sessionScope.memberMId} <br>--%>
 </body>
+<script>
+    const aa1 = () =>{
+        const p = document.getElementById("mPass").value;
+        const passDB = "${sessionScope.memberMPass}";
+        if(p == passDB)
+        {
+            location.href ="/board/delete?id=${board.id}";
+        }else {
+            alert("비밀번호가 틀립니다.")
+        }
+    }
+</script>
 </html>

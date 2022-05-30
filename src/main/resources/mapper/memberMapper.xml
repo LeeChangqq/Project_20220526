@@ -24,6 +24,15 @@
     <select id="count" resultType="int">
         select count(id) from m_table
     </select>
+    <update id="update" parameterType="member">
+        update m_table set mPass=#{mPass}, mPass2=#{mPass2}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mPro=#{mPro} where id=#{id}
+    </update>
+    <select id="findAll" resultType="member" parameterType="member">
+        select * from m_table
+    </select>
+    <delete id="delete" parameterType="Long">
+        delete from m_table where id= #{id}
+    </delete>
 </mapper>
 
 
