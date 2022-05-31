@@ -5,7 +5,7 @@
 
 <mapper namespace="Board">
     <insert id="save" parameterType="board">
-        insert into b_table(bTitle, bWriter, bDate, bContents) values (#{bTitle},#{bWriter}, now(), #{bContents})
+        insert into b_table(mId, bTitle, bWriter, bDate, bContents) values (#{mId}, #{bTitle},#{bWriter}, now(), #{bContents})
     </insert>
     <select id="count" resultType="int">
         select count(id) from b_table

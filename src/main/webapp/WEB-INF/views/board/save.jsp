@@ -17,6 +17,7 @@
     <div class="display-4 fw-normal">
         <form action="/board/save" method="post">
             <input class="form-control mb-2" type="text" name="bTitle" placeholder="제목">  <br>
+            <input class="form-control mb-2" type="hidden" name="mId" placeholder="제목" value="${sessionScope.memberId}">  <br>
             <input class="form-control mb-2" type="text" name="bWriter" id="bWriter" placeholder="${sessionScope.memberMId}" readonly>    <br>
             <textarea class="form-control mb-2" name="bContents" rows="5" cols="10"></textarea>   <br>
             <!--<input type="text" name="boardContents" placeholder="내용"> <br>-->
